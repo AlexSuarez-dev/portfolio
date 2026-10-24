@@ -1,0 +1,92 @@
+IDEAS: N8N + ANALÍTICA PARA EL PORTFOLIO
+=========================================
+
+------------------------------------------------------------
+1. N8N: COSTE Y DÓNDE ALOJARLO
+------------------------------------------------------------
+- Community Edition autoalojada = gratis, sin límite de ejecuciones
+  (licencia fair-code: uso propio sí, revenderlo como servicio no).
+- n8n Cloud = de pago (tiene prueba gratuita).
+- Plan: levantarlo con Docker en la VM de Oracle Cloud (la de NutriApp),
+  detrás del proxy de Cloudflare, con subdominio tipo n8n.<dominio>.
+- Vigilar la RAM de la VM (n8n consume unos 200-300 MB).
+
+------------------------------------------------------------
+2. AUTOMATIZACIONES CON N8N
+------------------------------------------------------------
+[Portfolio]
+- Formulario de contacto -> webhook n8n -> aviso por Telegram/email
+  + guardar el mensaje en Google Sheets.
+  (Alternativa más robusta: API route de Next.js + Resend; así, si
+  n8n está caído, el formulario sigue funcionando.)
+- Proyectos sincronizados con GitHub: cron diario que lee los repos
+  públicos (estrellas, último commit, lenguajes) y actualiza un JSON
+  que muestra la web ("actualizado hace X días").
+- Aviso cuando alguien descarga el CV.
+- Redeploy automático: cambio en un Sheet/Notion con los proyectos
+  -> n8n llama al Deploy Hook de Vercel.
+- Monitor de disponibilidad: ping cada X minutos a la web y a la API
+  de NutriApp, con alerta si algo cae.
+
+[Analítica]
+- Resumen semanal por Telegram/email con datos de la API de
+  Umami/PostHog: visitas, descargas del CV, de dónde vienen
+  (LinkedIn, Google...).
+- Alerta si un día hay un pico de visitas (p. ej., tras enviar
+  candidaturas).
+- Guardar histórico mensual en Google Sheets para ver la evolución.
+
+[Personal / otras]
+- Seguimiento de candidaturas: cuando envías una, se registra en un
+  Sheet con fecha y empresa, y si no hay respuesta en X días te avisa.
+- Recordatorio de actualizar el portfolio/CV cada mes.
+- NutriApp: resumen diario de usuarios nuevos, errores o uso de la
+  IA (cuota de Gemini/OpenAI).
+
+[Valor para entrevistas]
+- Tener n8n autoalojado + automatizaciones del portfolio es un
+  proyecto en sí: automatización + infraestructura propia.
+  Se puede contar en la sección de proyectos.
+
+------------------------------------------------------------
+3. ANALÍTICA DE LA WEB
+------------------------------------------------------------
+- n8n NO es la herramienta para medir visitas: usar una de analítica
+  y dejar n8n para mover o resumir esos datos.
+
+Opciones:
+- Vercel Web Analytics: visitas, páginas, países, dispositivos y
+  referrers. Gratis en el plan Hobby (con límite de eventos).
+  Sin cookies.
+- Umami (autoalojado en la VM): lo anterior + eventos propios
+  ("descargó CV", "clic en GitHub/LinkedIn"), tiempo en la página y
+  tasa de rebote. Gratis. Sin cookies.
+- PostHog: todo lo anterior + hasta qué sección baja cada visitante,
+  mapas de calor y grabaciones de sesión. Gratis hasta un volumen
+  alto.
+
+Qué medir:
+- Visitas y origen (LinkedIn, GitHub, Google, enlace directo).
+- Descargas del CV.
+- Clics en GitHub / LinkedIn / email.
+- Profundidad de scroll: en qué sección abandonan.
+- Proyecto más visto.
+- Idioma elegido (ES/CA/EN).
+- Móvil vs. escritorio.
+
+Recomendación:
+- Empezar con Umami autoalojado (sin cookies -> sin banner).
+- n8n para el resumen semanal.
+- Si se quieren mapas de calor/grabaciones -> añadir PostHog + banner.
+
+------------------------------------------------------------
+4. LEGAL (RGPD + LSSI, ESPAÑA)
+------------------------------------------------------------
+- No se puede identificar a personas concretas sin su consentimiento:
+  solo datos agregados (país, dispositivo, origen; como mucho, empresa
+  por IP).
+- Si se usan cookies o grabaciones de sesión -> banner de
+  consentimiento + política de privacidad.
+- Vercel Analytics y Umami no usan cookies -> no necesitan banner.
+- PostHog puede configurarse sin cookies, pero las grabaciones
+  requieren consentimiento.

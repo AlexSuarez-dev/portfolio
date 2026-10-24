@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Alejandro Manzanares · Ingeniería Informática",
+    "description": "Portfolio de Alejandro Manzanares, estudiante de 3º de Ingeniería Informática en la UAB. Proyectos con Java, Spring Boot, React e IA."
+  },
+  "nav": {
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Stack",
+    "education": "Formación",
+    "habits": "Hábitos",
+    "hobbies": "Hobbies",
+    "contact": "Contacto",
+    "open": "Abrir menú",
+    "close": "Cerrar menú",
+    "skip": "Saltar al contenido",
+    "home": "Ir al inicio"
+  },
+  "theme": { "toggle": "Cambiar entre tema claro y oscuro" },
+  "lang": { "label": "Idioma" },
+  "hero": {
+    "greeting": "hola, soy",
+    "cv": "Descargar CV",
+    "contact": "Hablemos",
+    "projects": "Ver proyectos"
+  },
+  "about": { "label": "sobre mí", "title": "Un poco de mí", "photoAlt": "Retrato de Alejandro Manzanares" },
+  "projects": {
+    "label": "proyectos",
+    "title": "Lo que he construido",
+    "highlights": "Lo más destacable",
+    "learned": "Qué aprendí",
+    "repo": "Ver código",
+    "demo": "Ver demo",
+    "private": "Repositorio privado · disponible bajo petición",
+    "more": "Ver detalles",
+    "less": "Ocultar detalles"
+  },
+  "skills": { "label": "stack", "title": "Con qué trabajo", "intro": "Tecnologías que he usado en mis proyectos." },
+  "education": { "label": "formación", "title": "Formación" },
+  "habits": { "label": "hábitos", "title": "Cómo funciono", "intro": "Lo que no sale en un expediente, pero se nota en cómo trabajo." },
+  "hobbies": { "label": "hobbies", "title": "Fuera del código" },
+  "contact": {
+    "label": "contacto",
+    "title": "¿Hablamos?",
+    "text": "¿Tienes un proyecto, una oferta o quieres comentarme algo? Escríbeme y te respondo lo antes posible.",
+    "copy": "Copiar email",
+    "copied": "Copiado"
+  },
+  "photo": { "pending": "foto pendiente" },
+  "footer": { "built": "Diseñado y desarrollado por mí con Next.js · Desplegado en Vercel" }
+}

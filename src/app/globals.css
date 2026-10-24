@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* El tema se controla con data-theme="dark" | "light" en <html>. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ── Paleta ──────────────────────────────────────────────
+   Basada en la guía de marca: carbón, hueso, ceniza y un rojo
+   apagado como único acento. Cambia aquí los colores de toda la web. */
+:root,
+[data-theme="dark"] {
+  --bg: #0b0b0c; /* carbón */
+  --surface: #141416;
+  --glass: rgb(20 20 22 / 0.6);
+  --fg: #edeae3; /* hueso */
+  --muted: #9a958c; /* ceniza */
+  --line: #2a2a2c;
+  --accent: #d2584c; /* rojo apagado, con contraste AA sobre carbón */
+  --accent-soft: rgb(210 88 76 / 0.12);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f3f0e9;
+  --surface: #fbf9f5;
+  --glass: rgb(251 249 245 / 0.7);
+  --fg: #141415;
+  --muted: #6b665e;
+  --line: #dad5cb;
+  --accent: #a8362c;
+  --accent-soft: rgb(168 54 44 / 0.08);
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-glass: var(--glass);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-display: var(--font-oswald);
+  --font-mono: var(--font-jetbrains);
+  --font-sans: var(--font-manrope);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Base ─────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+/* Grano muy suave sobre todo el fondo (guía de marca). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Las secciones no quedan tapadas por la cabecera fija al navegar. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ── Icono sol/luna ───────────────────────────────────── */
+.theme-icon {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+[data-theme="dark"] .theme-moon,
+[data-theme="light"] .theme-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+/* ── Hueco de foto pendiente ──────────────────────────── */
+.photo-placeholder {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 10px,
+    var(--line) 10px 11px
+  );
 }

@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio · Alejandro Manzanares
 
-## Getting Started
+Web personal / CV online. Next.js 16 + TypeScript + Tailwind CSS 4 + Motion, en tres idiomas (ES · CA · EN) con tema claro/oscuro.
 
-First, run the development server:
+## Arrancar en local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # comprueba que todo compila antes de subir cambios
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editar el contenido (sin tocar componentes)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Todo lo que ves en la web sale de `src/content/`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Archivo | Qué contiene |
+|---|---|
+| `src/content/profile.ts` | Nombre, email, GitHub, LinkedIn, CV, foto, textos de inicio y "Sobre mí", formación, URL de la web |
+| `src/content/projects.ts` | Proyectos. Para añadir uno, copia un bloque `{ ... }` y cambia los textos |
+| `src/content/skills.ts` | Tecnologías agrupadas |
+| `src/content/personal.ts` | Hábitos y hobbies (con sus fotos) |
+| `src/i18n/dictionaries/*.json` | Textos de la interfaz: menú, botones, títulos de sección |
 
-## Learn More
+Cada texto va en los tres idiomas: `{ es: "...", ca: "...", en: "..." }`.
 
-To learn more about Next.js, take a look at the following resources:
+Un campo vacío (`""`) se oculta en la web, así nunca hay botones que lleven a nada (por ejemplo, el botón de CV aparece solo cuando `cv` tiene ruta).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pendiente (busca `TODO` en `src/content/`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **CV:** guarda el PDF en `public/cv/` y pon la ruta en `profile.ts` → `cv`.
+- **LinkedIn:** URL en `profile.ts` → `linkedin`.
+- **Fotos:** guárdalas en `public/images/...` y pon la ruta en el campo `photo` / `image.src` correspondiente. Mientras falten, se ve un hueco rayado con el texto "foto pendiente".
+  - `profile.ts` → `photo` (retrato, vertical 4:5)
+  - `projects.ts` → NutriApp `image.src` (horizontal 16:10)
+  - `personal.ts` → gym, moto, airsoft (horizontal 4:3)
+- **Proyecto de turismo:** nombre real y, si es público, enlace al repo (`repo`).
+- **Dominio:** cuando lo tengas, cambia `siteUrl` en `profile.ts`.
 
-## Deploy on Vercel
+Recomendado para fotos: JPG o WebP de ~1600 px de ancho como máximo. Next.js las optimiza solo.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Colores y tipografía
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Colores: variables al principio de `src/app/globals.css` (tema oscuro y claro).
+- Tipografías: `src/app/[lang]/layout.tsx` (Oswald, JetBrains Mono y Manrope).
+
+## Estructura
+
+```
+src/
+├── app/
+│   ├── [lang]/            página, layout (SEO) e imagen Open Graph por idioma
+│   ├── sitemap.ts, robots.ts, icon.svg
+│   └── globals.css        colores y estilos base
+├── components/
+│   ├── sections/          Hero, About, Projects, Skills, Personal, Contact, Header
+│   └── ui/                botones, foto, tema, idioma, animaciones
+├── content/               ← tu contenido
+├── i18n/                  idiomas y textos de interfaz
+└── proxy.ts               redirige "/" al idioma del navegador
+```
+
+## Despliegue
+
+Conectado a Vercel: cada `git push` a `main` publica la web automáticamente.

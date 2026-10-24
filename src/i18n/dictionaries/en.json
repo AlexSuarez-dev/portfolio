@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Alejandro Manzanares · Computer Engineering",
+    "description": "Portfolio of Alejandro Manzanares, third-year Computer Engineering student at UAB. Projects with Java, Spring Boot, React and AI."
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Stack",
+    "education": "Education",
+    "habits": "Habits",
+    "hobbies": "Hobbies",
+    "contact": "Contact",
+    "open": "Open menu",
+    "close": "Close menu",
+    "skip": "Skip to content",
+    "home": "Go to top"
+  },
+  "theme": { "toggle": "Switch between light and dark theme" },
+  "lang": { "label": "Language" },
+  "hero": {
+    "greeting": "hi, I'm",
+    "cv": "Download CV",
+    "contact": "Let's talk",
+    "projects": "See projects"
+  },
+  "about": { "label": "about", "title": "A bit about me", "photoAlt": "Portrait of Alejandro Manzanares" },
+  "projects": {
+    "label": "projects",
+    "title": "What I've built",
+    "highlights": "Highlights",
+    "learned": "What I learned",
+    "repo": "View code",
+    "demo": "View demo",
+    "private": "Private repository · available on request",
+    "more": "Show details",
+    "less": "Hide details"
+  },
+  "skills": { "label": "stack", "title": "What I work with", "intro": "Technologies I've used in my projects." },
+  "education": { "label": "education", "title": "Education" },
+  "habits": { "label": "habits", "title": "How I work", "intro": "What doesn't show up on a transcript, but shows in how I work." },
+  "hobbies": { "label": "hobbies", "title": "Away from the code" },
+  "contact": {
+    "label": "contact",
+    "title": "Let's talk?",
+    "text": "Have a project, an offer or just want to tell me something? Write to me and I'll get back to you as soon as I can.",
+    "copy": "Copy email",
+    "copied": "Copied"
+  },
+  "photo": { "pending": "photo pending" },
+  "footer": { "built": "Designed and built by me with Next.js · Deployed on Vercel" }
+}

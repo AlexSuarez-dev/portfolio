@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Alejandro Manzanares · Enginyeria Informàtica",
+    "description": "Portfolio d'Alejandro Manzanares, estudiant de 3r d'Enginyeria Informàtica a la UAB. Projectes amb Java, Spring Boot, React i IA."
+  },
+  "nav": {
+    "about": "Sobre mi",
+    "projects": "Projectes",
+    "skills": "Stack",
+    "education": "Formació",
+    "habits": "Hàbits",
+    "hobbies": "Hobbies",
+    "contact": "Contacte",
+    "open": "Obrir menú",
+    "close": "Tancar menú",
+    "skip": "Saltar al contingut",
+    "home": "Anar a l'inici"
+  },
+  "theme": { "toggle": "Canviar entre tema clar i fosc" },
+  "lang": { "label": "Idioma" },
+  "hero": {
+    "greeting": "hola, sóc",
+    "cv": "Descarregar CV",
+    "contact": "Parlem",
+    "projects": "Veure projectes"
+  },
+  "about": { "label": "sobre mi", "title": "Una mica de mi", "photoAlt": "Retrat d'Alejandro Manzanares" },
+  "projects": {
+    "label": "projectes",
+    "title": "El que he construït",
+    "highlights": "El més destacable",
+    "learned": "Què vaig aprendre",
+    "repo": "Veure codi",
+    "demo": "Veure demo",
+    "private": "Repositori privat · disponible sota petició",
+    "more": "Veure detalls",
+    "less": "Amagar detalls"
+  },
+  "skills": { "label": "stack", "title": "Amb què treballo", "intro": "Tecnologies que he fet servir als meus projectes." },
+  "education": { "label": "formació", "title": "Formació" },
+  "habits": { "label": "hàbits", "title": "Com funciono", "intro": "El que no surt en un expedient, però es nota en com treballo." },
+  "hobbies": { "label": "hobbies", "title": "Fora del codi" },
+  "contact": {
+    "label": "contacte",
+    "title": "Parlem?",
+    "text": "Tens un projecte, una oferta o em vols comentar alguna cosa? Escriu-me i et respondré tan aviat com pugui.",
+    "copy": "Copiar email",
+    "copied": "Copiat"
+  },
+  "photo": { "pending": "foto pendent" },
+  "footer": { "built": "Dissenyat i desenvolupat per mi amb Next.js · Desplegat a Vercel" }
+}
