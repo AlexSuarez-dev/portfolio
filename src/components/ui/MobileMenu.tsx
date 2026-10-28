@@ -26,7 +26,7 @@ export function MobileMenu({ items, openLabel, closeLabel }: { items: Item[]; op
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? closeLabel : openLabel}
-        className="grid size-11 place-items-center rounded-full border border-line text-fg"
+        className="grid size-11 place-items-center rounded-[10px] border border-control text-fg"
       >
         {open ? <CloseIcon /> : <MenuIcon />}
       </button>
@@ -39,7 +39,7 @@ export function MobileMenu({ items, openLabel, closeLabel }: { items: Item[]; op
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute inset-x-0 top-full border-b border-line bg-bg/95 px-5 py-4 backdrop-blur-xl"
+            className="absolute inset-x-0 top-full border-b border-line bg-bg px-5 py-3"
           >
             <ul className="flex flex-col">
               {items.map((item) => (
@@ -47,7 +47,7 @@ export function MobileMenu({ items, openLabel, closeLabel }: { items: Item[]; op
                   <a
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="flex min-h-12 items-center border-b border-line/60 font-display text-xl font-light last:border-0"
+                    className="flex min-h-12 items-center border-b border-line text-lg font-medium last:border-0"
                   >
                     {item.label}
                   </a>

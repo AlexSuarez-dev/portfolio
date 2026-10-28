@@ -3,13 +3,12 @@
 import { useLayoutEffect } from "react";
 import { MoonIcon, SunIcon } from "./icons";
 
-// Mismo cálculo que el script inline de layout.tsx: lo guardado o, si no, el del sistema.
+// Mismo cálculo que el script inline de layout.tsx: lo guardado o, si no, el oscuro.
 const preferredTheme = () => {
   try {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light" || saved === "dark") return saved;
+    if (localStorage.getItem("theme") === "light") return "light";
   } catch {}
-  return matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  return "dark";
 };
 
 /** Botón sol/luna. El icono visible se decide por CSS según data-theme. */
@@ -34,7 +33,7 @@ export function ThemeToggle({ label }: { label: string }) {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="relative grid size-11 place-items-center rounded-full border border-line text-fg transition-colors hover:border-accent hover:text-accent"
+      className="relative grid size-11 place-items-center rounded-[10px] border border-control text-fg transition-colors hover:border-fg hover:bg-surface-2"
     >
       <SunIcon className="theme-icon theme-sun absolute" />
       <MoonIcon className="theme-icon theme-moon absolute" />

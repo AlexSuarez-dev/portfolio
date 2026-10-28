@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
-import { Habits, Hobbies } from "@/components/sections/Personal";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { profile } from "@/content/profile";
@@ -32,13 +31,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
       />
-      {/* Cambia el orden de las secciones moviendo estas líneas. */}
+      {/* Cambia el orden de las secciones moviendo estas líneas.
+          Si mueves Contact, el aviso de opinión sigue apareciendo al llegar a #contact. */}
       <Hero lang={lang} dict={dict} />
-      <About lang={lang} dict={dict} />
       <Projects lang={lang} dict={dict} />
       <Skills lang={lang} dict={dict} />
-      <Habits lang={lang} dict={dict} />
-      <Hobbies lang={lang} dict={dict} />
+      <About lang={lang} dict={dict} />
       <Contact dict={dict} />
     </>
   );
