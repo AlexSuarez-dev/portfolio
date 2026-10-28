@@ -1,19 +1,19 @@
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Manrope, Oswald } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/sections/Contact";
 import { Header } from "@/components/sections/Header";
+import { FeedbackWidget } from "@/components/ui/FeedbackWidget";
+import { Intro } from "@/components/ui/Intro";
 import { Providers } from "@/components/ui/Providers";
 import { profile } from "@/content/profile";
 import { defaultLocale, hasLocale, locales, ogLocales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import "../globals.css";
 
-// Tipografías de la marca: Oswald (titulares) y JetBrains Mono (etiquetas).
-// Manrope para los párrafos largos, donde la mono cansa al leer.
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald", display: "swap" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+// Tipografías: Geist (texto y titulares) y Geist Mono (etiquetas, datos).
+// Vienen del paquete `geist` como fuentes locales: no dependen de Google Fonts.
 
 // Genera /es, /ca y /en como páginas estáticas en el build.
 export function generateStaticParams() {
@@ -52,15 +52,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0b0b0c" },
-    { media: "(prefers-color-scheme: light)", color: "#f3f0e9" },
-  ],
+  themeColor: "#0a0807",
 };
 
-// Se ejecuta antes de pintar: aplica el tema guardado (o el del sistema)
-// para que no haya parpadeo de claro a oscuro al cargar.
-const themeScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}d.setAttribute("data-theme",t)}catch(e){}})()`;
+// Se ejecuta antes de pintar:
+// 1. Tema: el guardado o, por defecto, el oscuro (es el de la marca).
+// 2. Intro: solo la primera visita de la sesión, sin #ancla y sin
+//    "reducir movimiento". Cualquier interacción la corta al momento.
+const headScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");d.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){}try{if(!sessionStorage.getItem("intro")&&!location.hash&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("intro","1");d.setAttribute("data-intro","play");var done=function(){d.setAttribute("data-intro","done")};setTimeout(done,1800);["pointerdown","keydown","wheel","touchstart"].forEach(function(e){addEventListener(e,done,{once:true,passive:true})})}}catch(e){}})()`;
 
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
@@ -72,22 +71,28 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       lang={lang}
       data-theme="dark"
       suppressHydrationWarning
-      className={`${oswald.variable} ${jetbrains.variable} ${manrope.variable} antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: headScript }} />
+        {/* Sin JavaScript, el contenido que aparece al hacer scroll se ve igual. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className="min-h-svh overflow-x-hidden">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-full focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-[10px] focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
         >
           {dict.nav.skip}
         </a>
+        <Intro skipLabel={dict.intro.skip} />
         <Providers>
           <Header lang={lang} dict={dict} />
           <main id="main">{children}</main>
           <Footer dict={dict} />
+          <FeedbackWidget lang={lang} labels={dict.feedback} />
         </Providers>
       </body>
     </html>

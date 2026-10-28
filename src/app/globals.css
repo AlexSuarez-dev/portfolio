@@ -4,52 +4,85 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ── Paleta ──────────────────────────────────────────────
-   Basada en la guía de marca: carbón, hueso, ceniza y un rojo
-   apagado como único acento. Cambia aquí los colores de toda la web. */
+   Concepto: un sótano de ladrillo con un único neón rojo encendido.
+   - Negro cálido de fondo, blanco roto para leer.
+   - Tres rojos con un uso cada uno: --tube (el tubo de neón y sus luces),
+     --accent (texto rojo, AA sobre el fondo) y --fill (botones con texto blanco).
+   - --line es decorativa; --control es el borde de botones y campos (≥ 3:1).
+   En claro el neón está "apagado": mismo rojo, sin brillo, ladrillo casi invisible. */
 :root,
 [data-theme="dark"] {
-  --bg: #0b0b0c; /* carbón */
-  --surface: #141416;
-  --glass: rgb(20 20 22 / 0.6);
-  --fg: #edeae3; /* hueso */
-  --muted: #9a958c; /* ceniza */
-  --line: #2a2a2c;
-  --accent: #d2584c; /* rojo apagado, con contraste AA sobre carbón */
-  --accent-soft: rgb(210 88 76 / 0.12);
+  --bg: #0a0807;
+  --surface: #100c0b;
+  --surface-2: #161110;
+  --line: #2b1b18;
+  --line-strong: #4a2c27;
+  --control: #7a645e;
+  --fg: #f4f1ec;
+  --muted: #a39a92;
+  --accent: #ff5a5f;
+  --tube: #ff2e3b;
+  --core: #ffe3e0;
+  --fill: #c8102e;
+  --on-fill: #ffffff;
+  --cone: rgb(255 46 59 / 0.22);
+  --hi: rgb(255 255 255 / 0.05);
+  --hatch: #241a18;
+  --scrim: rgb(10 8 7 / 0.78);
+  --wall-opacity: 0.9;
   color-scheme: dark;
 }
 
 [data-theme="light"] {
-  --bg: #f3f0e9;
-  --surface: #fbf9f5;
-  --glass: rgb(251 249 245 / 0.7);
-  --fg: #141415;
-  --muted: #6b665e;
-  --line: #dad5cb;
-  --accent: #a8362c;
-  --accent-soft: rgb(168 54 44 / 0.08);
+  --bg: #eef2f4;
+  --surface: #ffffff;
+  --surface-2: #f6f8f9;
+  --line: #d3d9dd;
+  --line-strong: #c2c9ce;
+  --control: #767e84;
+  --fg: #16110f;
+  --muted: #57504b;
+  --accent: #b3121c;
+  --tube: #b3121c;
+  --core: #b3121c;
+  --fill: #b3121c;
+  --on-fill: #ffffff;
+  --cone: rgb(179 18 28 / 0.06);
+  --hi: rgb(255 255 255 / 0);
+  --hatch: #d3d9dd;
+  --scrim: rgb(22 17 15 / 0.55);
+  --wall-opacity: 0.06;
   color-scheme: light;
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
-  --color-glass: var(--glass);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-control: var(--control);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
-  --color-line: var(--line);
   --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
+  --color-tube: var(--tube);
+  --color-core: var(--core);
+  --color-fill: var(--fill);
+  --color-on-fill: var(--on-fill);
 
-  --font-display: var(--font-oswald);
-  --font-mono: var(--font-jetbrains);
-  --font-sans: var(--font-manrope);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Movimiento: duraciones y curvas con nombre (ver README). */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 /* ── Base ─────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -61,56 +94,277 @@ html {
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   transition:
-    background-color 0.4s ease,
-    color 0.4s ease;
-}
-
-/* Grano muy suave sobre todo el fondo (guía de marca). */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-color 0.36s ease,
+    color 0.36s ease;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--fill);
+  color: var(--on-fill);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
-  border-radius: 6px;
 }
 
 /* Las secciones no quedan tapadas por la cabecera fija al navegar. */
-section[id] {
-  scroll-margin-top: 5rem;
+section[id],
+[id="skills"] {
+  scroll-margin-top: 5.5rem;
 }
 
-/* ── Icono sol/luna ───────────────────────────────────── */
-.theme-icon {
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.3s ease;
+/* ── Scrollbar de neón ────────────────────────────────────
+   Chrome, Edge y Safari: tubo rojo con núcleo claro y brillo.
+   Firefox solo admite colores (sin degradado ni brillo).
+   En móvil el sistema oculta la barra: es un detalle de escritorio. */
+::-webkit-scrollbar {
+  width: 14px;
 }
-[data-theme="dark"] .theme-moon,
-[data-theme="light"] .theme-sun {
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.5);
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+}
+::-webkit-scrollbar-thumb {
+  min-height: 64px;
+  border-radius: 999px;
+  border: 4px solid var(--bg);
+  background: linear-gradient(90deg, #ff2e3b 0%, #ffe3e0 45%, #ffe3e0 55%, #ff2e3b 100%);
+  box-shadow:
+    0 0 10px #ff2e3b,
+    inset 0 0 3px #ff2e3b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #ff5a5f 0%, #ffffff 45%, #ffffff 55%, #ff5a5f 100%);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--fill);
+  box-shadow: none;
+}
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: var(--tube) var(--bg);
+  }
 }
 
-/* ── Hueco de foto pendiente ──────────────────────────── */
-.photo-placeholder {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent 0 10px,
-    var(--line) 10px 11px
-  );
+/* Clases de componente en su capa, para que las utilidades de Tailwind
+   (p. ej. hover:border-line-strong) puedan sobrescribirlas. */
+@layer components {
+  /* ── Pared de ladrillo y luz del neón ─────────────────── */
+  .brick-wall {
+    background: url("/images/brick.svg") 0 0 / 384px 168px repeat;
+    opacity: var(--wall-opacity);
+  }
+  .light-cone {
+    background: radial-gradient(ellipse 46% 62% at 50% 0%, var(--cone), transparent 72%);
+  }
+  .light-cone-center {
+    background: radial-gradient(ellipse 34% 46% at 50% 52%, var(--cone), transparent 72%);
+  }
+  .wall-shade {
+    background:
+      radial-gradient(ellipse 52% 72% at 50% 8%, transparent 0, var(--bg) 82%),
+      linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+  }
+
+  /* Tubo de neón: brillo estático (se pinta una vez, no se anima). */
+  .neon-bar {
+    background: var(--core);
+    box-shadow:
+      0 0 3px var(--tube),
+      0 0 14px rgb(255 46 59 / 0.75),
+      0 0 44px rgb(255 46 59 / 0.45),
+      0 0 120px rgb(255 46 59 / 0.25);
+  }
+  .led {
+    box-shadow: 0 0 6px var(--tube);
+  }
+  [data-theme="light"] .neon-bar {
+    background: var(--accent);
+    box-shadow: none;
+  }
+  [data-theme="light"] .led {
+    box-shadow: none;
+  }
+
+  /* Tarjeta base: borde fino y un brillo de 1 px arriba. */
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    box-shadow: inset 0 1px 0 var(--hi);
+  }
+
+  /* Hueco de foto pendiente. */
+  .photo-placeholder {
+    background-image: repeating-linear-gradient(-45deg, transparent 0 14px, var(--hatch) 14px 15px);
+  }
+
+  /* Botón primario: el neón se enciende al pasar el ratón. */
+  .btn-glow:hover {
+    box-shadow:
+      0 0 0 1px var(--tube),
+      0 8px 30px -8px rgb(255 46 59 / 0.6);
+  }
+  [data-theme="light"] .btn-glow:hover {
+    box-shadow: 0 8px 20px -10px rgb(179 18 28 / 0.7);
+  }
+
+  /* Icono sol/luna. */
+  .theme-icon {
+    transition:
+      transform 0.5s var(--ease-out-soft),
+      opacity 0.3s ease;
+  }
+  [data-theme="dark"] .theme-moon,
+  [data-theme="light"] .theme-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+}
+
+/* ── Máquina de escribir del hero ─────────────────────── */
+.tw {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: var(--tw-width);
+}
+.tw-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  background: var(--accent);
+  vertical-align: -3px;
+  animation: tw-blink 1s steps(1, end) 0s 5;
+}
+
+/* ── Intro ────────────────────────────────────────────────
+   El script del <head> pone data-intro="play" solo en la primera visita de
+   la sesión, sin #ancla y sin "reducir movimiento". La página ya está pintada
+   debajo (no penaliza el LCP); la capa se aparta sola por CSS aunque falle el JS.
+   Cualquier clic, tecla, rueda o toque pone data-intro="done" y la corta. */
+.intro {
+  display: none;
+}
+html[data-intro="play"] .intro {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--bg);
+  opacity: 0.96;
+  pointer-events: none;
+  animation: intro-out 0.4s cubic-bezier(0.55, 0, 1, 0.45) 1.1s both;
+}
+html[data-intro="play"] .intro-skip {
+  pointer-events: auto;
+}
+/* Va con `relative` o `absolute` (Tailwind) para que el z-index tenga efecto. */
+.above-intro {
+  z-index: 61;
+}
+html[data-intro="play"] .intro-ignite {
+  animation: neon-ignite 0.52s steps(1, end) 0s both;
+}
+html[data-intro="play"] .intro-glow {
+  animation: fade-in 0.5s var(--ease-out-soft) 0.5s both;
+}
+html[data-intro="play"] .tw {
+  animation-name: tw-type;
+  animation-duration: 0.45s;
+  animation-delay: 0.55s;
+  animation-fill-mode: both;
+}
+html[data-intro="play"] .tw-cursor {
+  animation:
+    fade-in 0.01s linear 0.55s both,
+    tw-blink 1s steps(1, end) 0.55s 5;
+}
+html[data-intro="play"] .intro-shift {
+  animation: shift-up 0.5s var(--ease-out-soft) both;
+  animation-delay: calc(1.1s + var(--i, 0) * 50ms);
+}
+
+/* Dos chispazos y encendido: 2,5 destellos en el primer segundo (< 3, WCAG 2.3.1). */
+@keyframes neon-ignite {
+  0% { opacity: 0; }
+  29% { opacity: 0.4; }
+  38% { opacity: 0; }
+  73% { opacity: 0.7; }
+  87% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes intro-out {
+  from { opacity: 0.96; visibility: visible; }
+  to { opacity: 0; visibility: hidden; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes tw-type {
+  from { width: 0; }
+  to { width: var(--tw-width); }
+}
+@keyframes tw-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes shift-up {
+  from { transform: translateY(16px); }
+  to { transform: none; }
+}
+
+/* ── Móvil de NutriApp (carga animada) ────────────────── */
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg, #1b1b1b 0%, #2c2c2c 50%, #1b1b1b 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.1s linear infinite;
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* ── Aviso y diálogo de opinión ───────────────────────── */
+.feedback-pill {
+  animation: slide-in 0.45s var(--ease-out-soft) both;
+}
+.feedback-ping {
+  animation: ping 1.2s ease-out 0.5s 2;
+}
+.feedback-dialog::backdrop {
+  background: var(--scrim);
+}
+.feedback-dialog[open] {
+  animation: pop 0.3s var(--ease-out-soft) both;
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ping {
+  0% { box-shadow: 0 0 0 0 rgb(255 46 59 / 0.7); }
+  100% { box-shadow: 0 0 0 12px rgb(255 46 59 / 0); }
+}
+@keyframes pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
 }

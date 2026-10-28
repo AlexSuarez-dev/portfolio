@@ -26,10 +26,18 @@ export const profile = {
   // y escribe aquí "/images/personal/retrato.jpg".
   photo: "",
 
+  // Se usa en el SEO y en la imagen que aparece al compartir el enlace.
   role: {
     es: "Estudiante de Ingeniería Informática · UAB",
     ca: "Estudiant d'Enginyeria Informàtica · UAB",
     en: "Computer Engineering student · UAB",
+  } satisfies Localized,
+
+  // Línea grande bajo tu nombre en el inicio.
+  headline: {
+    es: "Backend con Java y Spring Boot · Ingeniería Informática en la UAB",
+    ca: "Backend amb Java i Spring Boot · Enginyeria Informàtica a la UAB",
+    en: "Backend with Java and Spring Boot · Computer Engineering at UAB",
   } satisfies Localized,
 
   tagline: {
@@ -37,6 +45,13 @@ export const profile = {
     ca: "Construeixo aplicacions de principi a fi: des de l'API i la base de dades fins a l'app i el desplegament. Ara mateix, integrant IA en una app real.",
     en: "I build applications end to end: from the API and the database to the app and its deployment. Right now, integrating AI into a real-world app.",
   } satisfies Localized,
+
+  // Datos rápidos bajo los botones del inicio.
+  heroFacts: {
+    es: ["Técnico TIC desde 2022", "250+ commits en NutriApp", "Docker · Oracle Cloud · Cloudflare"],
+    ca: ["Tècnic TIC des del 2022", "250+ commits a NutriApp", "Docker · Oracle Cloud · Cloudflare"],
+    en: ["IT technician since 2022", "250+ commits on NutriApp", "Docker · Oracle Cloud · Cloudflare"],
+  } satisfies LocalizedList,
 
   // Párrafos de la sección "Sobre mí".
   about: {
@@ -57,15 +72,19 @@ export const profile = {
     ],
   } satisfies LocalizedList,
 
-  // Ficha estilo terminal del inicio. `value` puede ser un texto fijo
-  // o un texto por idioma.
-  status: [
-    { key: { es: "estudios", ca: "estudis", en: "studies" }, value: "ing_informática @ UAB" },
-    { key: { es: "curso", ca: "curs", en: "year" }, value: { es: "3º", ca: "3r", en: "3rd" } },
-    { key: { es: "proyecto_actual", ca: "projecte_actual", en: "current_project" }, value: "NutriApp" },
-    { key: { es: "stack", ca: "stack", en: "stack" }, value: "java · spring · react" },
-    { key: { es: "aprendiendo", ca: "aprenent", en: "learning" }, value: { es: "siempre", ca: "sempre", en: "always" } },
-  ] satisfies { key: Localized; value: string | Localized }[],
+  // Experiencia laboral, de la más reciente a la más antigua.
+  experience: [
+    {
+      title: { es: "Técnico TIC", ca: "Tècnic TIC", en: "IT Technician" },
+      place: "Turisme de Barcelona",
+      period: { es: "2022 — hoy", ca: "2022 — avui", en: "2022 — present" },
+      text: {
+        es: "Centralización de datos: procesos ETL y bases de datos MySQL y SQL Server, compaginado con la carrera.",
+        ca: "Centralització de dades: processos ETL i bases de dades MySQL i SQL Server, compaginat amb la carrera.",
+        en: "Data centralisation: ETL processes and MySQL and SQL Server databases, alongside my degree.",
+      },
+    },
+  ] satisfies { title: Localized; place: string; period: Localized; text: Localized }[],
 
   education: [
     {
@@ -76,10 +95,15 @@ export const profile = {
       },
       place: "Universitat Autònoma de Barcelona (UAB)",
       period: {
-        es: "Actualmente en 3º curso",
-        ca: "Actualment a 3r curs",
-        en: "Currently in 3rd year",
+        es: "En curso · 3º",
+        ca: "En curs · 3r",
+        en: "In progress · 3rd year",
+      },
+      text: {
+        es: "Proyectos en equipo como Geotracking turístico, con React y Spring Boot.",
+        ca: "Projectes en equip com Geotracking turístic, amb React i Spring Boot.",
+        en: "Team projects such as the tourism geotracking app, with React and Spring Boot.",
       },
     },
-  ] satisfies { title: Localized; place: string; period: Localized }[],
+  ] satisfies { title: Localized; place: string; period: Localized; text: Localized }[],
 };

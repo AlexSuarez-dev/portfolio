@@ -18,8 +18,8 @@ export const habits: PersonalItem[] = [
   {
     id: "learning",
     title: {
-      es: "Continuous learning",
-      ca: "Continuous learning",
+      es: "Aprendizaje continuo",
+      ca: "Aprenentatge continu",
       en: "Continuous learning",
     },
     text: {

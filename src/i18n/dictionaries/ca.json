@@ -1,51 +1,78 @@
 {
   "meta": {
-    "title": "Alejandro Manzanares · Enginyeria Informàtica",
-    "description": "Portfolio d'Alejandro Manzanares, estudiant de 3r d'Enginyeria Informàtica a la UAB. Projectes amb Java, Spring Boot, React i IA."
+    "title": "Alejandro Manzanares · Backend amb Java i Spring Boot",
+    "description": "Portfolio d'Alejandro Manzanares, estudiant de 3r d'Enginyeria Informàtica a la UAB i tècnic TIC. Backend amb Java i Spring Boot, React i IA aplicada."
   },
   "nav": {
+    "primary": "Principal",
     "about": "Sobre mi",
     "projects": "Projectes",
+    "experience": "Experiència",
     "skills": "Stack",
-    "education": "Formació",
-    "habits": "Hàbits",
-    "hobbies": "Hobbies",
     "contact": "Contacte",
+    "cta": "Contactar",
     "open": "Obrir menú",
     "close": "Tancar menú",
     "skip": "Saltar al contingut",
     "home": "Anar a l'inici"
   },
+  "intro": { "welcome": "benvingut al meu portfolio", "skip": "Saltar la intro" },
   "theme": { "toggle": "Canviar entre tema clar i fosc" },
   "lang": { "label": "Idioma" },
   "hero": {
-    "greeting": "hola, sóc",
+    "live": "NutriApp en producció",
     "cv": "Descarregar CV",
-    "contact": "Parlem",
     "projects": "Veure projectes"
   },
-  "about": { "label": "sobre mi", "title": "Una mica de mi", "photoAlt": "Retrat d'Alejandro Manzanares" },
   "projects": {
-    "label": "projectes",
-    "title": "El que he construït",
-    "highlights": "El més destacable",
+    "featured": "Projecte destacat",
+    "live": "En producció",
+    "architecture": "arquitectura",
     "learned": "Què vaig aprendre",
     "repo": "Veure codi",
     "demo": "Veure demo",
     "private": "Repositori privat · disponible sota petició",
-    "more": "Veure detalls",
-    "less": "Amagar detalls"
+    "other": "Un altre projecte",
+    "replay": "Tornar a veure la càrrega",
+    "stack": "Stack"
   },
-  "skills": { "label": "stack", "title": "Amb què treballo", "intro": "Tecnologies que he fet servir als meus projectes." },
-  "education": { "label": "formació", "title": "Formació" },
-  "habits": { "label": "hàbits", "title": "Com funciono", "intro": "El que no surt en un expedient, però es nota en com treballo." },
-  "hobbies": { "label": "hobbies", "title": "Fora del codi" },
+  "experience": { "label": "Experiència" },
+  "skills": { "label": "Stack", "concepts": "Conceptes" },
+  "about": {
+    "label": "Sobre mi",
+    "title": "Una mica de mi",
+    "photoAlt": "Retrat d'Alejandro Manzanares",
+    "habits": "Com treballo",
+    "hobbies": "Fora del codi"
+  },
   "contact": {
-    "label": "contacte",
     "title": "Parlem?",
-    "text": "Tens un projecte, una oferta o em vols comentar alguna cosa? Escriu-me i et respondré tan aviat com pugui.",
+    "text": "Si busques algú per a backend o vols comentar un projecte, escriu-me.",
+    "write": "Escriure'm",
     "copy": "Copiar email",
     "copied": "Copiat"
+  },
+  "feedback": {
+    "cta": "T'està agradant la web?",
+    "dismiss": "Tancar l'avís",
+    "title": "T'està agradant la web?",
+    "text": "La teva opinió m'ajuda a millorar-la. És anònima i es triga deu segons.",
+    "rating": "Valoració",
+    "love": "M'encanta",
+    "ok": "Està bé",
+    "meh": "Millorable",
+    "comment": "Què hi canviaries?",
+    "optional": "Opcional",
+    "placeholder": "Un detall, una idea, un error…",
+    "send": "Enviar opinió",
+    "sending": "Enviant…",
+    "pick": "Tria una valoració per enviar.",
+    "error": "No s'ha pogut enviar. Torna-ho a provar o escriu-me per email.",
+    "thanks": "Gràcies!",
+    "thanksText": "Ho llegeixo tot. I si busques algú per a backend, ja saps on trobar-me.",
+    "talk": "Parlem?",
+    "close": "Tancar",
+    "footer": "Donar la meva opinió sobre la web"
   },
   "photo": { "pending": "foto pendent" },
   "footer": { "built": "Dissenyat i desenvolupat per mi amb Next.js · Desplegat a Vercel" }

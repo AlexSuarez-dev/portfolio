@@ -22,19 +22,19 @@ export default async function Image({ params }: { params: Promise<{ lang: string
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#0b0b0c",
-          color: "#edeae3",
+          background: "#0a0807",
+          color: "#f4f1ec",
           fontFamily: "monospace",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, color: "#d2584c" }}>{"// portfolio"}</div>
+        <div style={{ display: "flex", width: 360, height: 6, borderRadius: 6, background: "#ffe3e0", boxShadow: "0 0 24px #ff2e3b, 0 0 60px #ff2e3b" }} />
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 96, fontWeight: 300, letterSpacing: -2, lineHeight: 1 }}>{profile.name}</div>
-          <div style={{ marginTop: 28, fontSize: 34, color: "#9a958c" }}>{profile.role[lang]}</div>
+          <div style={{ fontSize: 96, fontWeight: 600, letterSpacing: -4, lineHeight: 1 }}>{profile.name}</div>
+          <div style={{ marginTop: 28, fontSize: 34, color: "#a39a92" }}>{profile.headline[lang]}</div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#9a958c" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#a39a92" }}>
           <span>{profile.siteUrl.replace(/^https?:\/\//, "")}</span>
-          <span style={{ width: 120, height: 2, background: "#d2584c", alignSelf: "center" }} />
+          <span style={{ width: 120, height: 2, background: "#ff2e3b", alignSelf: "center" }} />
         </div>
       </div>
     ),

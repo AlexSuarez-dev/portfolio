@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { CheckIcon, CopyIcon } from "./icons";
+import { buttonStyles, cn } from "./primitives";
 
-/** Copia el email al portapapeles y avisa durante 2 segundos. */
+/** Muestra el email y lo copia al portapapeles; avisa durante 2 segundos. */
 export function CopyEmail({ email, copyLabel, copiedLabel }: { email: string; copyLabel: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -21,10 +22,14 @@ export function CopyEmail({ email, copyLabel, copiedLabel }: { email: string; co
     <button
       type="button"
       onClick={copy}
-      className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-5 text-sm transition-colors hover:border-accent hover:text-accent"
+      title={copyLabel}
+      className={cn(buttonStyles.base, buttonStyles.ghost, "font-mono text-[15px] font-normal break-all")}
     >
-      {copied ? <CheckIcon /> : <CopyIcon />}
-      <span aria-live="polite">{copied ? copiedLabel : copyLabel}</span>
+      {email}
+      {copied ? <CheckIcon className="text-accent" /> : <CopyIcon />}
+      <span className="sr-only" aria-live="polite">
+        {copied ? copiedLabel : copyLabel}
+      </span>
     </button>
   );
 }
