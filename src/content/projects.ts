@@ -39,6 +39,7 @@ export type Project = {
   demo?: string; // URL de la demo, si existe
   privateRepo?: boolean; // muestra "repositorio privado" en vez del enlace
   // Solo para el proyecto destacado:
+  icon?: string; // icono de la app junto al título (cuadrado, PNG con transparencia)
   screens?: Screen[];
   appDemo?: AppDemo;
   facts?: { key: Localized; title: Localized; text: Localized }[];
@@ -69,23 +70,24 @@ export const projects: Project[] = [
     },
     stack: ["java", "springBoot", "springSecurity", "reactNative", "typescript", "mysql", "docker", "oracleCloud", "cloudflare"],
     privateRepo: true,
+    icon: "/images/projects/nutriapp-icono.png",
 
     // Los tres pilares. El del centro es la pantalla de inicio animada.
-    // TODO: guarda las otras dos capturas en public/images/projects/ y pon su ruta en `src`.
+    // Capturas: verticales, recortadas sin la barra de estado (248 × 520 en pantalla).
     screens: [
       {
-        title: { es: "Registro con IA", ca: "Registre amb IA", en: "AI meal logging" },
+        title: { es: "Privacidad desde el diseño", ca: "Privacitat des del disseny", en: "Privacy by design" },
         text: {
-          es: "Una foto o una frase, y la app calcula los macros de la comida.",
-          ca: "Una foto o una frase, i l'app calcula els macros de l'àpat.",
-          en: "A photo or a sentence, and the app works out the meal's macros.",
+          es: "Consentimiento explícito para los datos de salud y política de privacidad versionada.",
+          ca: "Consentiment explícit per a les dades de salut i política de privacitat versionada.",
+          en: "Explicit consent for health data and a versioned privacy policy.",
         },
         image: {
-          src: "", // TODO: "/images/projects/nutriapp-registro.jpg"
+          src: "/images/projects/nutriapp-privacidad.jpg",
           alt: {
-            es: "Pantalla de registro de comidas de NutriApp",
-            ca: "Pantalla de registre d'àpats de NutriApp",
-            en: "NutriApp meal logging screen",
+            es: "Pantalla «Privacidad y datos» de NutriApp: política de privacidad, aviso legal y consentimiento de datos de salud aceptado",
+            ca: "Pantalla «Privacitat i dades» de NutriApp: política de privacitat, avís legal i consentiment de dades de salut acceptat",
+            en: "NutriApp “Privacy and data” screen: privacy policy, legal notice and accepted health data consent",
           },
         },
       },
@@ -99,18 +101,18 @@ export const projects: Project[] = [
         live: true,
       },
       {
-        title: { es: "Un chat que recuerda", ca: "Un xat que recorda", en: "A chat that remembers" },
+        title: { es: "Un chat con límites", ca: "Un xat amb límits", en: "A chat with boundaries" },
         text: {
-          es: "Conoce tus preferencias y alergias antes de recomendarte nada.",
-          ca: "Coneix les teves preferències i al·lèrgies abans de recomanar-te res.",
-          en: "It knows your preferences and allergies before recommending anything.",
+          es: "Conoce tus macros del día y se niega a salirse de la nutrición.",
+          ca: "Coneix els teus macros del dia i es nega a sortir-se de la nutrició.",
+          en: "It knows your macros for the day and refuses to stray from nutrition.",
         },
         image: {
-          src: "", // TODO: "/images/projects/nutriapp-chat.jpg"
+          src: "/images/projects/nutriapp-chat.jpg",
           alt: {
-            es: "Pantalla del chat con IA de NutriApp",
-            ca: "Pantalla del xat amb IA de NutriApp",
-            en: "NutriApp AI chat screen",
+            es: "Chat con IA de NutriApp: responde con los macros que quedan y rechaza una pregunta que no es de nutrición",
+            ca: "Xat amb IA de NutriApp: respon amb els macros que queden i rebutja una pregunta que no és de nutrició",
+            en: "NutriApp AI chat: it replies with the remaining macros and declines a non-nutrition question",
           },
         },
       },

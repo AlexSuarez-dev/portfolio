@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Fragment } from "react";
 import { projects, type Project } from "@/content/projects";
 import type { Locale } from "@/i18n/config";
@@ -47,6 +48,9 @@ function Featured({ project: p, lang, dict }: { project: Project; lang: Locale; 
       <Reveal className="flex flex-col gap-3.5">
         <Label>{dict.projects.featured}</Label>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
+          {p.icon && (
+            <Image src={p.icon} alt="" width={64} height={64} className="size-12 shrink-0 sm:size-16" />
+          )}
           <h2 className="text-5xl font-semibold tracking-[-0.045em] sm:text-[64px] sm:leading-none">{p.title}</h2>
           {p.live && <LiveTag label={dict.projects.live} />}
           <span className="text-[15px] text-muted">{tr(p.context, lang)}</span>
@@ -72,13 +76,13 @@ function Featured({ project: p, lang, dict }: { project: Project; lang: Locale; 
                       src={screen.image?.src}
                       alt={screen.image ? tr(screen.image.alt, lang) : tr(screen.title, lang)}
                       pendingText={dict.photo.pending}
-                      sizes="260px"
+                      sizes="248px"
                       framed={false}
-                      className="h-[540px] w-[240px] rounded-[36px] bg-[#0c0b0b]"
+                      className="h-[520px] w-[248px] rounded-[36px] bg-[#0c0b0b]"
                     />
                   </div>
                 )}
-                <figcaption className="flex max-w-[280px] flex-col items-center gap-1.5 text-center">
+                <figcaption className="flex max-w-[280px] flex-col items-center gap-1.5 text-center md:min-h-[124px]">
                   <span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>
                   <span className="text-[17px] font-semibold">{tr(screen.title, lang)}</span>
                   <span className="text-[15px] leading-normal text-muted">{tr(screen.text, lang)}</span>
