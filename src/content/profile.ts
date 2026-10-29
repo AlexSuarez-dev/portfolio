@@ -16,7 +16,7 @@ export const profile = {
 
   email: "alexmanzanares98@gmail.com",
   github: "https://github.com/AlexSuarez-dev",
-  linkedin: "", // TODO: pega aquí la URL de tu perfil de LinkedIn
+  linkedin: "https://www.linkedin.com/in/alexms-dev",
 
   // TODO: guarda tu CV como public/cv/cv-alejandro-manzanares.pdf
   // y escribe aquí "/cv/cv-alejandro-manzanares.pdf".
@@ -73,37 +73,84 @@ export const profile = {
   } satisfies LocalizedList,
 
   // Experiencia laboral, de la más reciente a la más antigua.
+  // `current: true` enciende el LED (sigue en curso).
   experience: [
     {
-      title: { es: "Técnico TIC", ca: "Tècnic TIC", en: "IT Technician" },
+      title: {
+        es: "Desarrollador y técnico TIC",
+        ca: "Desenvolupador i tècnic TIC",
+        en: "ICT Developer & Technician",
+      },
       place: "Turisme de Barcelona",
-      period: { es: "2022 — hoy", ca: "2022 — avui", en: "2022 — present" },
+      period: { es: "Jun 2022 — hoy", ca: "Juny 2022 — avui", en: "Jun 2022 — present" },
+      current: true,
       text: {
-        es: "Centralización de datos: procesos ETL y bases de datos MySQL y SQL Server, compaginado con la carrera.",
-        ca: "Centralització de dades: processos ETL i bases de dades MySQL i SQL Server, compaginat amb la carrera.",
-        en: "Data centralisation: ETL processes and MySQL and SQL Server databases, alongside my degree.",
+        es: "Compaginado con los estudios: primero los dos CFGS y ahora la carrera.",
+        ca: "Compaginat amb els estudis: primer els dos CFGS i ara la carrera.",
+        en: "Alongside my studies: first two vocational degrees, now my university degree.",
+      },
+      points: {
+        es: [
+          "Lidero la centralización de datos que sustituye los Excel sueltos: una plataforma de inventario con Java, Spring Boot, Hibernate y MySQL, con arquitectura hexagonal y vertical slicing, que ya gestiona más de 200 ordenadores en producción.",
+          "App de localización en tiempo real (React Native, Java y Node.js) que usan los informadores turísticos en cada turno de 8:00 a 20:00 para compartir su posición por la ciudad.",
+          "Herramientas web internas y públicas: formularios del personal de calle para el departamento de estadística y webs con el tiempo en directo y los próximos eventos de la ciudad.",
+          "Procesos ETL con Pentaho y optimización de consultas en MySQL y SQL Server.",
+        ],
+        ca: [
+          "Lidero la centralització de dades que substitueix els Excel solts: una plataforma d'inventari amb Java, Spring Boot, Hibernate i MySQL, amb arquitectura hexagonal i vertical slicing, que ja gestiona més de 200 ordinadors en producció.",
+          "App de localització en temps real (React Native, Java i Node.js) que fan servir els informadors turístics a cada torn de 8:00 a 20:00 per compartir la seva posició per la ciutat.",
+          "Eines web internes i públiques: formularis del personal de carrer per al departament d'estadística i webs amb el temps en directe i els propers esdeveniments de la ciutat.",
+          "Processos ETL amb Pentaho i optimització de consultes a MySQL i SQL Server.",
+        ],
+        en: [
+          "I lead the data centralisation effort that replaces scattered Excel files: an inventory platform with Java, Spring Boot, Hibernate and MySQL, built with hexagonal architecture and vertical slicing, now managing 200+ computers in production.",
+          "Real-time location tracking app (React Native, Java and Node.js) used by tourist information officers on every 8:00–20:00 shift to share their position across the city.",
+          "Internal and public web tools: forms filled in by field staff for the statistics department, plus web apps with live weather and upcoming city events.",
+          "ETL processes with Pentaho and query optimisation in MySQL and SQL Server.",
+        ],
       },
     },
-  ] satisfies { title: Localized; place: string; period: Localized; text: Localized }[],
+  ] satisfies {
+    title: Localized;
+    place: string;
+    period: Localized;
+    current?: boolean;
+    text: Localized;
+    points: LocalizedList;
+  }[],
 
+  // Formación, de la más reciente a la más antigua. `badge` es la sigla corta.
   education: [
     {
+      badge: "UAB",
       title: {
         es: "Grado en Ingeniería Informática",
         ca: "Grau en Enginyeria Informàtica",
         en: "Bachelor's Degree in Computer Engineering",
       },
-      place: "Universitat Autònoma de Barcelona (UAB)",
-      period: {
-        es: "En curso · 3º",
-        ca: "En curs · 3r",
-        en: "In progress · 3rd year",
-      },
-      text: {
-        es: "Proyectos en equipo como Geotracking turístico, con React y Spring Boot.",
-        ca: "Projectes en equip com Geotracking turístic, amb React i Spring Boot.",
-        en: "Team projects such as the tourism geotracking app, with React and Spring Boot.",
-      },
+      place: "Universitat Autònoma de Barcelona",
+      period: { es: "2024 — hoy · 3º", ca: "2024 — avui · 3r", en: "2024 — present · 3rd year" },
+      current: true,
     },
-  ] satisfies { title: Localized; place: string; period: Localized; text: Localized }[],
+    {
+      badge: "DAM",
+      title: {
+        es: "CFGS en Desarrollo de Aplicaciones Multiplataforma",
+        ca: "CFGS en Desenvolupament d'Aplicacions Multiplataforma",
+        en: "Higher Technician in Multiplatform App Development",
+      },
+      place: "Escola del Treball",
+      period: { es: "2023 — 2024", ca: "2023 — 2024", en: "2023 — 2024" },
+    },
+    {
+      badge: "DAW",
+      title: {
+        es: "CFGS en Desarrollo de Aplicaciones Web",
+        ca: "CFGS en Desenvolupament d'Aplicacions Web",
+        en: "Higher Technician in Web Application Development",
+      },
+      place: "Institut La Guineueta",
+      period: { es: "2021 — 2023", ca: "2021 — 2023", en: "2021 — 2023" },
+    },
+  ] satisfies { badge: string; title: Localized; place: string; period: Localized; current?: boolean }[],
 };

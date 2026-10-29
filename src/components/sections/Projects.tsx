@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Fragment } from "react";
-import { projects, type Project } from "@/content/projects";
+import { demoIn, projects, type Project } from "@/content/projects";
 import type { Locale } from "@/i18n/config";
 import { tr, type Dictionary } from "@/i18n/dictionaries";
 import { ArrowIcon, GitHubIcon, LockIcon } from "../ui/icons";
@@ -38,7 +38,7 @@ function LiveTag({ label }: { label: string }) {
 }
 
 function Featured({ project: p, lang, dict }: { project: Project; lang: Locale; dict: Dictionary }) {
-  const demo = p.appDemo;
+  const demo = p.appDemo && demoIn(p.appDemo, lang);
   const phoneLabel = demo
     ? `${p.title}: ${demo.kcal} / ${demo.kcalGoal} kcal; ${demo.macros.map((m) => `${m.label} ${m.value} / ${m.goal} g`).join("; ")}.`
     : p.title;
@@ -73,7 +73,7 @@ function Featured({ project: p, lang, dict }: { project: Project; lang: Locale; 
                 ) : (
                   <div data-theme="dark" className="rounded-[46px] border border-control bg-[#050404] p-2.5">
                     <Photo
-                      src={screen.image?.src}
+                      src={screen.image && tr(screen.image.src, lang)}
                       alt={screen.image ? tr(screen.image.alt, lang) : tr(screen.title, lang)}
                       pendingText={dict.photo.pending}
                       sizes="248px"

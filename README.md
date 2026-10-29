@@ -18,7 +18,7 @@ Todo lo que ves en la web sale de `src/content/`:
 
 | Archivo | Qué contiene |
 |---|---|
-| `src/content/profile.ts` | Nombre, email, GitHub, LinkedIn, CV, foto, textos del inicio y de "Sobre mí", experiencia, formación, URL de la web |
+| `src/content/profile.ts` | Nombre, email, GitHub, LinkedIn, CV, foto, textos del inicio y de "Sobre mí", experiencia (con sus puntos) y formación (con su sigla: UAB, DAM, DAW), URL de la web |
 | `src/content/projects.ts` | Proyectos. El destacado (NutriApp) lleva sus pantallas, datos de la demo animada, puntos clave y arquitectura |
 | `src/content/skills.ts` | Tecnologías agrupadas (con logo) y conceptos |
 | `src/content/tech.ts` | Catálogo de tecnologías: nombre visible de cada una |
@@ -32,8 +32,7 @@ Un campo vacío (`""`) se oculta en la web, así nunca hay botones que lleven a 
 ## Pendiente (busca `TODO` en `src/content/`)
 
 - **CV:** guarda el PDF en `public/cv/` y pon la ruta en `profile.ts` → `cv`.
-- **LinkedIn:** URL en `profile.ts` → `linkedin`.
-- **Capturas de NutriApp:** ya están las de privacidad y chat (`public/images/projects/`). Para cambiarlas, recórtalas sin la barra de estado a proporción 248 × 520 y actualiza `screens[].image.src` en `projects.ts`. La del centro no es una foto: es la pantalla de inicio recreada y animada con los datos de `appDemo`.
+- **Capturas de NutriApp:** ya están las de privacidad y chat (`public/images/projects/`); el chat tiene una versión por idioma (`nutriapp-chat-es/ca/en.jpg`). Para cambiarlas, recórtalas sin la barra de estado a proporción 248 × 520 y actualiza `screens[].image.src` en `projects.ts` (una ruta, o `{ es, ca, en }` si la captura tiene texto). La del centro no es una foto: es la pantalla de inicio recreada y animada con los datos de `appDemo`, también en los tres idiomas.
 - **Fotos:** guárdalas en `public/images/...` y pon la ruta en el campo `photo` / `image.src` correspondiente. Mientras falten, se ve un hueco rayado con el texto "foto pendiente".
   - `profile.ts` → `photo` (retrato, vertical 4:5)
   - `personal.ts` → gym (4:3), moto y airsoft (16:9)

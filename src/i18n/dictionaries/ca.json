@@ -36,7 +36,8 @@
     "replay": "Tornar a veure la càrrega",
     "stack": "Stack"
   },
-  "experience": { "label": "Experiència" },
+  "experience": { "label": "Experiència", "current": "Actual" },
+  "education": { "label": "Formació", "current": "En curs" },
   "skills": { "label": "Stack", "concepts": "Conceptes" },
   "about": {
     "label": "Sobre mi",

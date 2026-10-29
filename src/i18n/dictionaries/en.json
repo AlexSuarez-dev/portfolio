@@ -36,7 +36,8 @@
     "replay": "Watch it load again",
     "stack": "Stack"
   },
-  "experience": { "label": "Experience" },
+  "experience": { "label": "Experience", "current": "Current" },
+  "education": { "label": "Education", "current": "In progress" },
   "skills": { "label": "Stack", "concepts": "Concepts" },
   "about": {
     "label": "About",

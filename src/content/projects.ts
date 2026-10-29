@@ -1,4 +1,4 @@
-import type { Localized } from "@/i18n/config";
+import type { Locale, Localized, LocalizedList } from "@/i18n/config";
 import type { TechId } from "./tech";
 
 /**
@@ -7,24 +7,52 @@ import type { TechId } from "./tech";
  * Para añadir uno, copia un bloque { ... } y cambia los textos.
  */
 
-/** Pantalla de la app en los pilares. Sin `image.src`, se ve un hueco rayado. */
+/**
+ * Pantalla de la app en los pilares. Sin `image.src`, se ve un hueco rayado.
+ * `src` puede ser una ruta o una por idioma ({ es, ca, en }) si la captura tiene texto.
+ */
 export type Screen = {
   title: Localized;
   text: Localized;
-  image?: { src: string; alt: Localized };
+  image?: { src: string | Localized; alt: Localized };
   // true = en vez de una foto, se dibuja la pantalla de inicio animada (`appDemo`).
   live?: boolean;
 };
 
-/** Datos de la pantalla de inicio de NutriApp que se "cargan" en la web. */
+/** Datos de la pantalla de inicio de NutriApp que se "cargan" en la web (ya en un idioma). */
 export type AppDemo = {
   date: string;
   kcal: number;
   kcalGoal: number;
   macros: { label: string; value: number; goal: number; color: string }[];
+  mealsTitle: string;
   meal: { name: string; detail: string };
   tabs: string[];
 };
+
+/** Lo mismo, con los textos en los tres idiomas (así se escribe en este archivo). */
+export type AppDemoContent = {
+  date: Localized;
+  kcal: number;
+  kcalGoal: number;
+  macros: { label: Localized; value: number; goal: number; color: string }[];
+  mealsTitle: Localized;
+  meal: { name: Localized; detail: Localized };
+  tabs: LocalizedList;
+};
+
+/** Pasa la demo al idioma de la página. */
+export function demoIn(demo: AppDemoContent, lang: Locale): AppDemo {
+  return {
+    date: demo.date[lang],
+    kcal: demo.kcal,
+    kcalGoal: demo.kcalGoal,
+    macros: demo.macros.map((m) => ({ ...m, label: m.label[lang] })),
+    mealsTitle: demo.mealsTitle[lang],
+    meal: { name: demo.meal.name[lang], detail: demo.meal.detail[lang] },
+    tabs: demo.tabs[lang],
+  };
+}
 
 export type Project = {
   slug: string; // identificador único, sin espacios
@@ -41,7 +69,7 @@ export type Project = {
   // Solo para el proyecto destacado:
   icon?: string; // icono de la app junto al título (cuadrado, PNG con transparencia)
   screens?: Screen[];
-  appDemo?: AppDemo;
+  appDemo?: AppDemoContent;
   facts?: { key: Localized; title: Localized; text: Localized }[];
   architecture?: { key: string; title: Localized; detail: string; main?: boolean }[];
   architectureNotes?: Localized[]; // líneas bajo el diagrama de arquitectura
@@ -108,7 +136,11 @@ export const projects: Project[] = [
           en: "It knows your macros for the day and refuses to stray from nutrition.",
         },
         image: {
-          src: "/images/projects/nutriapp-chat-v2.jpg",
+          src: {
+            es: "/images/projects/nutriapp-chat-es.jpg",
+            ca: "/images/projects/nutriapp-chat-ca.jpg",
+            en: "/images/projects/nutriapp-chat-en.jpg",
+          },
           alt: {
             es: "Chat con IA de NutriApp: responde con los macros que quedan y rechaza una pregunta que no es de nutrición",
             ca: "Xat amb IA de NutriApp: respon amb els macros que queden i rebutja una pregunta que no és de nutrició",
@@ -120,16 +152,24 @@ export const projects: Project[] = [
 
     // Datos reales de la pantalla de inicio (captura del 27 de octubre).
     appDemo: {
-      date: "Hoy, 27 oct",
+      date: { es: "Hoy, 27 oct", ca: "Avui, 27 oct.", en: "Today, Oct 27" },
       kcal: 582,
       kcalGoal: 2863,
       macros: [
-        { label: "Proteína", value: 45, goal: 140, color: "#3b6fe0" },
-        { label: "Carbohidratos", value: 55, goal: 425, color: "#e8a933" },
-        { label: "Grasa", value: 19, goal: 67, color: "#e5533a" },
+        { label: { es: "Proteína", ca: "Proteïna", en: "Protein" }, value: 45, goal: 140, color: "#3b6fe0" },
+        { label: { es: "Carbohidratos", ca: "Carbohidrats", en: "Carbs" }, value: 55, goal: 425, color: "#e8a933" },
+        { label: { es: "Grasa", ca: "Greix", en: "Fat" }, value: 19, goal: 67, color: "#e5533a" },
       ],
-      meal: { name: "Pasta con salmón y atún", detail: "582 kcal · 45g prot · 55g carb · 19g grasa" },
-      tabs: ["Home", "Chat", "Perfil"],
+      mealsTitle: { es: "Comidas de hoy", ca: "Àpats d'avui", en: "Today's meals" },
+      meal: {
+        name: { es: "Pasta con salmón y atún", ca: "Pasta amb salmó i tonyina", en: "Pasta with salmon and tuna" },
+        detail: {
+          es: "582 kcal · 45g prot · 55g carb · 19g grasa",
+          ca: "582 kcal · 45g prot · 55g carb · 19g greix",
+          en: "582 kcal · 45g prot · 55g carb · 19g fat",
+        },
+      },
+      tabs: { es: ["Home", "Chat", "Perfil"], ca: ["Inici", "Xat", "Perfil"], en: ["Home", "Chat", "Profile"] },
     },
 
     facts: [
@@ -147,8 +187,8 @@ export const projects: Project[] = [
         title: { es: "Un chat con atajos", ca: "Un xat amb dreceres", en: "A chat with shortcuts" },
         text: {
           es: "Respuestas de un toque («¿Qué me falta hoy?», «Sugiéreme la cena») y una barra fija con las kcal y la proteína que te quedan del día.",
-          ca: "Respostes d'un toc («Què em falta avui?», «Suggereix-me el sopar») i una barra fixa amb les kcal i la proteïna que et queden del dia.",
-          en: "One-tap replies (“What am I missing today?”, “Suggest dinner”) and a fixed bar with the kcal and protein you have left for the day.",
+          ca: "Respostes d'un toc («Què em falta avui?», «Proposa'm el sopar») i una barra fixa amb les kcal i la proteïna que et queden del dia.",
+          en: "One-tap replies (“What's left today?”, “Suggest dinner”) and a fixed bar with the kcal and protein you have left for the day.",
         },
       },
       {

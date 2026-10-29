@@ -118,7 +118,7 @@ export function NutriPhone({ demo, label, replayLabel }: { demo: AppDemo; label:
               ))}
             </div>
 
-            <p className="mt-[22px] text-[15px] font-bold">Comidas de hoy</p>
+            <p className="mt-[22px] text-[15px] font-bold">{demo.mealsTitle}</p>
             {full ? (
               <div
                 className={cn("mt-3 border-b border-[#3a3a3a] pb-3", animating && "animate-[slide-in_0.45s_cubic-bezier(0.22,1,0.36,1)_1.1s_both]")}
