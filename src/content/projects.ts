@@ -44,7 +44,7 @@ export type Project = {
   appDemo?: AppDemo;
   facts?: { key: Localized; title: Localized; text: Localized }[];
   architecture?: { key: string; title: Localized; detail: string; main?: boolean }[];
-  architectureNote?: Localized;
+  architectureNotes?: Localized[]; // líneas bajo el diagrama de arquitectura
 };
 
 export const projects: Project[] = [
@@ -108,7 +108,7 @@ export const projects: Project[] = [
           en: "It knows your macros for the day and refuses to stray from nutrition.",
         },
         image: {
-          src: "/images/projects/nutriapp-chat.jpg",
+          src: "/images/projects/nutriapp-chat-v2.jpg",
           alt: {
             es: "Chat con IA de NutriApp: responde con los macros que quedan y rechaza una pregunta que no es de nutrición",
             ca: "Xat amb IA de NutriApp: respon amb els macros que queden i rebutja una pregunta que no és de nutrició",
@@ -143,12 +143,12 @@ export const projects: Project[] = [
         },
       },
       {
-        key: { es: "Seguridad", ca: "Seguretat", en: "Security" },
-        title: { es: "Login a prueba de fuerza bruta", ca: "Login a prova de força bruta", en: "Brute-force-proof login" },
+        key: { es: "Frontend", ca: "Frontend", en: "Frontend" },
+        title: { es: "Un chat con atajos", ca: "Un xat amb dreceres", en: "A chat with shortcuts" },
         text: {
-          es: "JWT y Spring Security, con límite de intentos por IP y por cuenta.",
-          ca: "JWT i Spring Security, amb límit d'intents per IP i per compte.",
-          en: "JWT and Spring Security, with attempt limits per IP and per account.",
+          es: "Respuestas de un toque («¿Qué me falta hoy?», «Sugiéreme la cena») y una barra fija con las kcal y la proteína que te quedan del día.",
+          ca: "Respostes d'un toc («Què em falta avui?», «Suggereix-me el sopar») i una barra fixa amb les kcal i la proteïna que et queden del dia.",
+          en: "One-tap replies (“What am I missing today?”, “Suggest dinner”) and a fixed bar with the kcal and protein you have left for the day.",
         },
       },
       {
@@ -168,11 +168,23 @@ export const projects: Project[] = [
       { key: "ia", title: { es: "Capa de IA", ca: "Capa d'IA", en: "AI layer" }, detail: "Gemini ⇢ OpenAI" },
       { key: "datos", title: { es: "Base de datos", ca: "Base de dades", en: "Database" }, detail: "MySQL · JPA" },
     ],
-    architectureNote: {
-      es: "API en capas (controller → service → repository) con DTOs, validación y tests con JUnit",
-      ca: "API en capes (controller → service → repository) amb DTOs, validació i tests amb JUnit",
-      en: "Layered API (controller → service → repository) with DTOs, validation and JUnit tests",
-    },
+    architectureNotes: [
+      {
+        es: "API en capas (controller → service → repository) con DTOs, validación y tests con JUnit",
+        ca: "API en capes (controller → service → repository) amb DTOs, validació i tests amb JUnit",
+        en: "Layered API (controller → service → repository) with DTOs, validation and JUnit tests",
+      },
+      {
+        es: "Patrones: Strategy (proveedor de IA) · Decorator (cuota diaria y fallback) · Repository · DTO",
+        ca: "Patrons: Strategy (proveïdor d'IA) · Decorator (quota diària i fallback) · Repository · DTO",
+        en: "Patterns: Strategy (AI provider) · Decorator (daily quota and fallback) · Repository · DTO",
+      },
+      {
+        es: "Seguridad: JWT con Spring Security y límite de intentos de login por IP y por cuenta",
+        ca: "Seguretat: JWT amb Spring Security i límit d'intents de login per IP i per compte",
+        en: "Security: JWT with Spring Security and login attempt limits per IP and per account",
+      },
+    ],
   },
   {
     slug: "geotracking-turismo",

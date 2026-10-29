@@ -139,8 +139,12 @@ function Featured({ project: p, lang, dict }: { project: Project; lang: Locale; 
                 </Fragment>
               ))}
             </div>
-            {p.architectureNote && (
-              <p className="border-t border-line px-5 py-3.5 font-mono text-sm text-muted">{tr(p.architectureNote, lang)}</p>
+            {p.architectureNotes && p.architectureNotes.length > 0 && (
+              <ul className="flex flex-col gap-1.5 border-t border-line px-5 py-3.5 font-mono text-sm text-muted">
+                {p.architectureNotes.map((note) => (
+                  <li key={note.en}>{tr(note, lang)}</li>
+                ))}
+              </ul>
             )}
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line px-5 py-[18px]">
               <ul aria-label={dict.projects.stack} className="flex flex-wrap gap-2">
