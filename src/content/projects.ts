@@ -137,9 +137,9 @@ export const projects: Project[] = [
         key: { es: "IA", ca: "IA", en: "AI" },
         title: { es: "IA con red de seguridad", ca: "IA amb xarxa de seguretat", en: "AI with a safety net" },
         text: {
-          es: "Interfaz común con fallback automático de Gemini a OpenAI y cuota diaria por usuario, encadenados con el patrón Decorator.",
-          ca: "Interfície comuna amb fallback automàtic de Gemini a OpenAI i quota diària per usuari, encadenats amb el patró Decorator.",
-          en: "A common interface with automatic fallback from Gemini to OpenAI and a daily per-user quota, chained with the Decorator pattern.",
+          es: "Patrón Strategy para saltar entre Gemini y OpenAI y minimizar los errores al llamar a sus API, con una cuota diaria por usuario.",
+          ca: "Patró Strategy per saltar entre Gemini i OpenAI i minimitzar els errors en cridar les seves API, amb una quota diària per usuari.",
+          en: "Strategy pattern to switch between Gemini and OpenAI and minimise errors when calling their APIs, with a daily per-user quota.",
         },
       },
       {
